@@ -12,17 +12,18 @@ setup_environment() {
 
 # Main function to orchestrate the tasks
 main() {
-    if [ ! -f "$FLAG_FILE" ]; then
-        echo "Running setup environment..."
-		BASHRC_CONTENT="
+    BASHRC_CONTENT="
 # Automatically activate virtual environment
 if [ -d \"/workspace/venv\" ]; then
-	source /workspace/venv/bin/activate
-	alias python='/workspace/venv/bin/python'
-	alias pip='/workspace/venv/bin/pip'
+    source /workspace/venv/bin/activate
+    alias python='/workspace/venv/bin/python'
+    alias pip='/workspace/venv/bin/pip'
 fi
 "
-		echo "$BASHRC_CONTENT" >> ~/.bashrc
+    echo "$BASHRC_CONTENT" >> ~/.bashrc
+    if [ ! -f "$FLAG_FILE" ]; then
+        echo "Running setup environment..."
+
 		source ~/.bashrc
 		rsync -av /tmp/venv/ $VENV_DIR
         rsync -av /tmp/kohya_ss/ $BASE_DIR/kohya_ss
@@ -40,11 +41,12 @@ fi
 		bash -x $BASE_DIR/kohya_ss/gui.sh
     else
         echo "Setup already completed. Skipping setup_environment."
+        source ~/.bashrc
         rm -rf /tmp/venv/
         rm -rf /tmp/kohya_ss/
-        source $VENV_DIR/bin/activate
 		jupyter lab --allow-root --no-browser --port=8888 --ip=* --ServerApp.terminado_settings="{\"shell_command\":[\"/bin/bash\"]}" --ServerApp.token=$SECRET --ServerApp.allow_origin=* --ServerApp.root_dir="/" &
-        bash -x $BASE_DIR/kohya_ss/gui.sh
+        # bash -x $BASE_DIR/kohya_ss/gui.sh
+        python kohya_gui.py --headless --listen 0.0.0.0
     fi
 
 }
