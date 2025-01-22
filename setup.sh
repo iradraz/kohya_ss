@@ -38,7 +38,7 @@ fi
 		
 		# cd $BASE_DIR/fluxgym && python $BASE_DIR/fluxgym/app.py &
 		jupyter lab --allow-root --no-browser --port=8888 --ip=* --ServerApp.terminado_settings="{\"shell_command\":[\"/bin/bash\"]}" --ServerApp.token=$SECRET --ServerApp.allow_origin=* --ServerApp.root_dir="/" &
-		bash -x $BASE_DIR/kohya_ss/gui.sh
+		cd $BASE_DIR/kohya_ss && python $BASE_DIR/kohya_ss/kohya_gui.py --headless --listen 0.0.0.0
     else
         echo "Setup already completed. Skipping setup_environment."
         source ~/.bashrc
@@ -46,9 +46,8 @@ fi
         rm -rf /tmp/kohya_ss/
 		jupyter lab --allow-root --no-browser --port=8888 --ip=* --ServerApp.terminado_settings="{\"shell_command\":[\"/bin/bash\"]}" --ServerApp.token=$SECRET --ServerApp.allow_origin=* --ServerApp.root_dir="/" &
         # bash -x $BASE_DIR/kohya_ss/gui.sh
-        python kohya_gui.py --headless --listen 0.0.0.0
+        cd $BASE_DIR/kohya_ss && python $BASE_DIR/kohya_ss/kohya_gui.py --headless --listen 0.0.0.0
     fi
-
 }
 
 # Call the main function
