@@ -1,0 +1,9 @@
+flux:
+  - url: "https://huggingface.com/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors"
+    name: "clip_l.safetensors"
+  - url: "https://huggingface.com/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors"
+    name: "t5xxl_fp16.safetensors"
+  - url: "https://huggingface.com/cocktailpeanut/xulf-dev/resolve/main/flux1-dev.sft"
+    name: "flux1-dev.sft"
+  - url: "https://huggingface.com/cocktailpeanut/xulf-dev/resolve/main/ae.sft"
+    name: "ae.sft"

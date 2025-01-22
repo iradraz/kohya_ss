@@ -32,7 +32,7 @@ RUN /tmp/venv/bin/python "/tmp/kohya_ss/setup/setup_linux.py" --platform-require
 VOLUME ["/workspace"]
 WORKDIR /workspace
 
-COPY setup.sh /tmp/
+COPY setup.sh config.yaml read_yaml.py /tmp/
 EXPOSE 7860
 ENV GRADIO_SERVER_NAME="0.0.0.0"
 
